@@ -7,7 +7,9 @@ export class MainContent extends Component {
                 <h1 className="text-4xl text-center text-tertiary">
                     This is Main Content!</h1>
 
-                <div className="h-screen w-1/3 text-center p-1 bg-yellow-400">
+                <div className="h-20 w-20 text-center p-1 bg-yellow-400
+                                rotate-12 shadow-gray-900 shadow-xl
+                                hover:shadow-red-500">
                     Height <br/>& <br/> Width
                 </div>
             </div>
