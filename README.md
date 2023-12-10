@@ -1,61 +1,77 @@
-1. `File`->`New`->`Project`->`Javascript`->`React` (Command: `npx create-react-app my-app --template typescript`)
-2. Go to `package.json` to see defined default run scripts for the React project
-3. Run `npm run start` to run the React project you've created to see the output in browser on port 3000
-4. Add `tailwind css, Tailwind Formatter, Tailwind CSS Smart Completions` plugins in IntelliJ IDEA
-5. Clear `App.tsx`, `App.css` and `index.css` files to remove boilerplate code provided initially
-6. Goto `https://tailwindcss.com/docs/installation` to see instructions for tailwind css.
-7. Then click `Using PostCSS` tab which redirects to `https://tailwindcss.com/docs/installation/using-postcss` for instructions for React Project.
-8. Install Tailwind css
-   1. `npm install -D tailwindcss postcss autoprefixer` 
-   2. `npx tailwindcss init`
-9. Add postcss.config.js
-      `module.exports = {
-          plugins: {
-              tailwindcss: {},
-              autoprefixer: {},
-          }
-      }`
-10. Add tailwind.config.js
-      `/** @type {import('tailwindcss').Config} */
-           module.exports = {
-               content: ["./src/**/*.{js,jsx,ts,tsx}"],
-               theme: {
-                   extend: {},
-               },
-               plugins: [],
-          }`
-11. Add this to index.css
-       `@tailwind base;
-        @tailwind components;
-        @tailwind utilities;`
-12. Then run the project usually using script command defined in `package.json`.
-    Command: `npm run start`
-13. Add `<div>Box</div>` to App.tsx
-14. Then define inline css for this Box div `<div style={{backgroundColor: "red", padding: 10, textAlign: "center"}}>Inline CSS Box</div>`
-15. Then explain the difference between the below code
-    App.tsx to
-    `<br/>
-    <div className="box">External CSS Box</div>`
+1. Create a folder called `view` inside that place `Navbar`, `MainContent` and `Footer` folders.
+2. Create a folder called `images` to add images and add `icon.png`.
+3. Then place this code inside Navbar.
+   `return (
+       <div className="p-2 bg-[#444544] flex">
+           <h1 className="text-1xl text-secondary">Organic Shop</h1>
+           <img className="h-5 w-5 top-0 ml-1" src={logo} alt=""/>
+       </div>
+   );`
+4. Then place this code inside MainContent
+   `return (
+       <div className="md:px12 max-2x1 mx-auto pt-28 pb-28">
+           <h1 className="text-tertiary text-center">This is Main Content</h1>
+       </div>
+   );`
+5. Then place this code inside Footer
+   `return (
+       <div className="p-2 bg-[#444544]">
+           <h1 className="text-1xl text-secondary text-center">This is Footer</h1>
+       </div>
+   );`
+6. Put this code in `App.tsx`
+   `<>
+       <Navbar/>
+       <MainContent/>
+       <Footer/>
+   </>`
+7. Then replace this code in `Navbar`.
+   `<div className="p-2 bg-[#444544] flex">
+        <h1 className="text-1xl text-secondary">Organic Shop</h1>
+        <img className="h-5 w-5 top-0 ml-1" src={logo} alt=""/>
 
-    App.css to
-    `.box {
-    background-color: red;
-    padding: 10px;
-    text-align: center;
-    }`
-16. Then explain the difference using utility classes
-    App.tsx to `<br/>
-    <div className="bg-red p-10 text-center">Utility CSS Box</div>`
-
-    App.css to
-    `.bg-red {
-    background-color: red;
-    }
-
-    .p-10 {
-    padding: 10px;
-    }
-
-    .text-center {
-    text-align: center;
+        <ul className="list-none ml-[165px]">
+            <li className="inline-block mr-2 text-[11px] text-[#e6f0e6] cursor-pointer hover:text-green-400">Home</li>
+            <li className="inline-block mr-2 text-[11px] text-[#e6f0e6] cursor-pointer hover:text-green-400">Contact</li>
+            <li className="inline-block mr-2 text-[11px] text-[#e6f0e6] cursor-pointer hover:text-green-400">About</li>
+        </ul>
+        <button className="text-[8px] text-[#e6f0e6] bg-green-400 pl-3 pr-3 ml-5 rounded hover:text-tertiary">Sign In</button>
+   </div>`
+8. Then replace footer with this code to add additional styles.
+   `<div className="p-2 bg-[#444544] flex justify-center">
+       <p className="pt-1 pr-3 text-[10px] text-[#e6f0e6] hover:text-green-400">Copyright © 2023</p>
+       <h1 className="text-1xl text-secondary">Organic Shop</h1>
+       <img className="h-5 w-5 top-0 ml-1" src={logo} alt=""/>
+   </div>`
+9. Install react-router-dom by using this command: `npm i -D react-router-dom`
+10. Then please create a Home component
+    `return (
+        <>
+            <h1 className="text-center">This is Home Component!</h1>
+        </>
+    );`
+11. Then place this code inside `MainContent.tsx` to add routing for Home
+    `<Routes>
+        <Route path="/" Component={Home}></Route>
+    </Routes>`
+12. Then Place this code inside Navbar to navigate to home
+    `<Link to="/">Home</Link>`
+13. Then place this code inside `MainContent.tsx` to add routing for Contact & About
+    `<Route path="/contact" Component={Contact}></Route>
+     <Route path="/about" Component={About}></Route>`
+14. Then please create these links in Navbar to navigate both about and contact
+    `<Link to="/contact">Contact</Link>
+     <Link to="/about">About</Link>`
+15. Then remove temporary added `pt-28 pb-28` classes to `MainContent.tsx` and comment out `<h1 className="text-center">This is Main Content</h1>` tag in `MainContent.tsx` for more visual representation
+16. Then please set custom heights bg-color for those components for further visual representation
+    Home.tsx -> `h-60 pt-6 bg-yellow-400`
+    About.tsx -> `h-32 pt-6 bg-blue-200`
+    Contact.tsx -> `h-44 pt-6 bg-green-300`
+17. Then explain the usage of min-height property to keep same height for components
+    Contact.tsx -> `min-h-screen`
+18. You may use onClick method to capture any button click events.
+    `<button className="text-[8px] text-[#e6f0e6] bg-green-400 pl-3 pr-3 ml-5 rounded hover:text-tertiary"
+             onClick={this.onButtonClick}>Sign In</button>`
+    `private onButtonClick = () => {
+        alert("Button Clicked!")
     }`
