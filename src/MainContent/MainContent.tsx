@@ -10,7 +10,8 @@ export class MainContent extends Component {
                 <div className="h-20 w-20 text-center p-1 bg-yellow-400
                                 rotate-12 shadow-gray-900 shadow-xl
                                 hover:shadow-red-500
-                                !cursor-pointer">
+                                !cursor-pointer
+                                min-h-screen max-h-screen">
                     Height <br/>& <br/> Width
                 </div>
             </div>
