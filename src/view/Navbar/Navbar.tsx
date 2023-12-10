@@ -13,11 +13,16 @@ export class Navbar extends Component {
                          alt=""/>
                 </div>
 
-                <ul className="list-none flex">
+                <ul className="list-none flex mt-1">
                     <li className="mr-2 text-[11px] text-[#e6f0e6]">Home</li>
                     <li className="mr-2 text-[11px] text-[#e6f0e6]">Contact</li>
                     <li className="mr-2 text-[11px] text-[#e6f0e6]">About</li>
                 </ul>
+
+                <button className="text-[8px] text-[#e6f0e6]
+                                   bg-green-400 pl-3 pr-3
+                                   hover:text-tertiary">
+                                    Sign In</button>
             </div>
         );
     }
