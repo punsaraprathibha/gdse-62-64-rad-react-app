@@ -11,7 +11,8 @@ export class MainContent extends Component {
                                 rotate-12 shadow-gray-900 shadow-xl
                                 hover:shadow-red-500
                                 !cursor-pointer
-                                min-h-screen max-h-screen">
+                                min-h-screen max-h-screen
+                                mx-auto">
                     Height <br/>& <br/> Width
                 </div>
             </div>
