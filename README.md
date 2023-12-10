@@ -1,61 +1,45 @@
-1. `File`->`New`->`Project`->`Javascript`->`React` (Command: `npx create-react-app my-app --template typescript`)
-2. Go to `package.json` to see defined default run scripts for the React project
-3. Run `npm run start` to run the React project you've created to see the output in browser on port 3000
-4. Add `tailwind css, Tailwind Formatter, Tailwind CSS Smart Completions` plugins in IntelliJ IDEA
-5. Clear `App.tsx`, `App.css` and `index.css` files to remove boilerplate code provided initially
-6. Goto `https://tailwindcss.com/docs/installation` to see instructions for tailwind css.
-7. Then click `Using PostCSS` tab which redirects to `https://tailwindcss.com/docs/installation/using-postcss` for instructions for React Project.
-8. Install Tailwind css
-   1. `npm install -D tailwindcss postcss autoprefixer` 
-   2. `npx tailwindcss init`
-9. Add postcss.config.js
-      `module.exports = {
-          plugins: {
-              tailwindcss: {},
-              autoprefixer: {},
-          }
-      }`
-10. Add tailwind.config.js
-      `/** @type {import('tailwindcss').Config} */
-           module.exports = {
-               content: ["./src/**/*.{js,jsx,ts,tsx}"],
-               theme: {
-                   extend: {},
-               },
-               plugins: [],
-          }`
-11. Add this to index.css
-       `@tailwind base;
-        @tailwind components;
-        @tailwind utilities;`
-12. Then run the project usually using script command defined in `package.json`.
-    Command: `npm run start`
-13. Add `<div>Box</div>` to App.tsx
-14. Then define inline css for this Box div `<div style={{backgroundColor: "red", padding: 10, textAlign: "center"}}>Inline CSS Box</div>`
-15. Then explain the difference between the below code
-    App.tsx to
-    `<br/>
-    <div className="box">External CSS Box</div>`
-
-    App.css to
-    `.box {
-    background-color: red;
-    padding: 10px;
-    text-align: center;
-    }`
-16. Then explain the difference using utility classes
-    App.tsx to `<br/>
-    <div className="bg-red p-10 text-center">Utility CSS Box</div>`
-
-    App.css to
-    `.bg-red {
-    background-color: red;
-    }
-
-    .p-10 {
-    padding: 10px;
-    }
-
-    .text-center {
-    text-align: center;
-    }`
+1. Install `React generator` plugin for easy usage for generating React Components
+    * `Functions based Components`
+    * `Arrow Functions based Components`
+    * `Class based Components`
+2. Create folder `Navbar` and inside that folder please create `Navbar.tsx` file.
+3. Add below code to `Navbar.tsx`.
+    <div className="p-2 bg-blue-300">
+        <h1 className="text-1xl text-tertiary text-center">This is NavBar</h1>
+    </div>
+    Then add `<Navbar>` in `App.tsx`
+4. Create folder `MainContent` and inside that folder please create `MainContent.tsx` file.
+    <div className="md:px12 p-4 max-2x1 mx-auto pt-28 pb-28 bg-amber-100">
+        <h1 className="text-tertiary text-center">This is Main Content</h1>
+    </div>
+    Then add `<MainContent/>` in `App.tsx`
+5. Create folder `Footer` and inside that folder please create `Footer.tsx` file.
+    <div className="p-2 bg-blue-300">
+        <h1 className="text-1xl text-tertiary text-center">This is Footer</h1>
+    </div>
+    Then add `<Footer/>` in `App.tsx`
+6. Then apply gradient colors to Navbar
+    `bg-gradient-to-r from-blue-500`
+7. Then apply gradient to as well to Navbar
+    `bg-gradient-to-r from-blue-500 to-red-400`
+8. Then apply gradient to main content to show different direction
+    `bg-gradient-to-br from-green-300 to-yellow-300`
+9. Then show how to apply gradient in between those 2 colors
+    `bg-gradient-to-br from-green-300 via-blue-100 to-yellow-300`
+10. Then apply opacity to footer like this
+    `bg-blue-300/50`
+11. Then add a fixed height & fixed width box to main content
+    `<div className="h-20 w-20 bg-yellow-400 text-center p-1">Height <br></br> & <br></br> Width</div>`
+    `<div className="h-20 w-1/3 bg-yellow-400 text-center p-1">Height <br></br> & <br></br> Width</div>`
+    `<div className="h-screen w-1/3 bg-yellow-400 text-center p-1">Height <br></br> & <br></br> Width</div>`
+12. Then apply rotation css for the div
+    `rotate-12 shadow-lg shadow-gray-900`
+    `hover:shadow-red-500`
+    `cursor-pointer`
+13. Just use ! mark before your desired utility class to mark it as !important
+14. Then apply different screen sizes for responsive
+    `<div className="h-20 max-w-screen-sm bg-yellow-400 text-center p-1">Height <br></br> & <br></br> Width</div>`
+    `<div className="h-20 max-w-screen-2xl bg-yellow-400 text-center p-1">Height <br></br> & <br></br> Width</div>`
+15. Usage of mx-auto
+    `<div className="h-20 max-w-screen-2xl bg-yellow-400 text-center p-1 mx-10">Height <br></br> & <br></br> Width</div>`
+    `<div className="h-20 max-w-screen-2xl bg-yellow-400 text-center p-1 mx-auto">Height <br></br> & <br></br> Width</div>`
