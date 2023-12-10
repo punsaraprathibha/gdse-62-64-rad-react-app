@@ -1,5 +1,6 @@
 import {Component} from "react";
-import logo from '../../images/icon.png'
+import logo from '../../../images/icon.png'
+import {Link} from "react-router-dom";
 
 export class Navbar extends Component {
     render() {
@@ -14,16 +15,27 @@ export class Navbar extends Component {
                 </div>
 
                 <ul className="list-none flex mt-1">
-                    <li className="mr-2 text-[11px] text-[#e6f0e6]">Home</li>
-                    <li className="mr-2 text-[11px] text-[#e6f0e6]">Contact</li>
-                    <li className="mr-2 text-[11px] text-[#e6f0e6]">About</li>
+                    <li className="mr-2 text-[11px] text-[#e6f0e6]">
+                        <Link to="/">Home</Link>
+                    </li>
+                    <li className="mr-2 text-[11px] text-[#e6f0e6]">
+                        <Link to="/contact">Contact</Link>
+                    </li>
+                    <li className="mr-2 text-[11px] text-[#e6f0e6]">
+                        <Link to="/about">About</Link>
+                    </li>
                 </ul>
 
                 <button className="text-[8px] text-[#e6f0e6]
                                    bg-green-400 pl-3 pr-3
-                                   hover:text-tertiary">
+                                   hover:text-tertiary"
+                         onClick={this.onButtonClick}>
                                     Sign In</button>
             </div>
         );
+    }
+
+    onButtonClick = () => {
+        alert("Button Clicked!")
     }
 }
