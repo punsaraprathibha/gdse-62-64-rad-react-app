@@ -1,6 +1,4 @@
 import {Component} from "react";
-import spinach from "../../../images/products/spinach.png";
-
 interface ProductProps {
     data: any
 }
@@ -9,6 +7,9 @@ export class Product extends Component<ProductProps> {
     render() {
 
         const {data} = this.props;
+        const image =
+            require('../../../images/products/'
+                + data.image)
 
         return (
             <div className="w-28 h-32
@@ -16,7 +17,7 @@ export class Product extends Component<ProductProps> {
                                     items-center
                                     border-gray-500 border-[0.5px]">
                 <div>
-                    <img src={spinach} alt=""/>
+                    <img className="h-[88px] w-[88px]" src={image} alt=""/>
                 </div>
                 <div className="flex">
                     <div>
@@ -33,9 +34,7 @@ export class Product extends Component<ProductProps> {
                 </div>
 
                 <div className="flex justify-center">
-                    <button className="w-full p-[2.5px]
-                                              bg-secondary
-                                              text-[8px]">Add To Cart
+                    <button className="w-full mt-1 p-[2.4px] bg-secondary text-[8px] border-gray-500 border-[0.5px]">Add to Cart
                     </button>
                 </div>
             </div>
