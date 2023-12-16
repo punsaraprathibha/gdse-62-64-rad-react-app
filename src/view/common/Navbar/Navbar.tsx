@@ -30,15 +30,10 @@ export class Navbar extends Component {
 
                 <button className="text-[8px] text-[#e6f0e6]
                                    bg-green-400 pl-3 pr-3
-                                   hover:text-tertiary"
-                        onClick={this.onButtonClick}>
-                    Sign In
+                                   hover:text-tertiary">
+                    <Link to="/login">Sign In</Link>
                 </button>
             </div>
         );
-    }
-
-    private onButtonClick = () => {
-        alert("Button Clicked!")
     }
 }
