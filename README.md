@@ -1,77 +1,267 @@
-1. Create a folder called `view` inside that place `Navbar`, `MainContent` and `Footer` folders.
-2. Create a folder called `images` to add images and add `icon.png`.
-3. Then place this code inside Navbar.
-   `return (
-       <div className="p-2 bg-[#444544] flex">
-           <h1 className="text-1xl text-secondary">Organic Shop</h1>
-           <img className="h-5 w-5 top-0 ml-1" src={logo} alt=""/>
-       </div>
-   );`
-4. Then place this code inside MainContent
-   `return (
-       <div className="md:px12 max-2x1 mx-auto pt-28 pb-28">
-           <h1 className="text-tertiary text-center">This is Main Content</h1>
-       </div>
-   );`
-5. Then place this code inside Footer
-   `return (
-       <div className="p-2 bg-[#444544]">
-           <h1 className="text-1xl text-secondary text-center">This is Footer</h1>
-       </div>
-   );`
-6. Put this code in `App.tsx`
-   `<>
+1. Previously we had below components in `App.tsx` wrapped by `BrowserRouter`
+    `<BrowserRouter>
        <Navbar/>
        <MainContent/>
        <Footer/>
-   </>`
-7. Then replace this code in `Navbar`.
-   `<div className="p-2 bg-[#444544] flex">
-        <h1 className="text-1xl text-secondary">Organic Shop</h1>
-        <img className="h-5 w-5 top-0 ml-1" src={logo} alt=""/>
+   </BrowserRouter>`
+2. So, if we need to navigate to login page which don't have any of these common components, we need to do some small layout change of this current layout.
+3. So, for that we need to extract these common set of components to a separate single component for easy to manage. Let's call it as `DefaultLayout.tsx`
+    `export class DefaultLayout extends Component { 
+        render() {
+            return (
+                <>
+                    <Navbar/>
+                    <MainContent/>
+                    <Footer/>
+                </>
+            );
+        }
+   }`
+4. Let's create new component called `Login`
+    `export class Login extends Component {
+        render() {
+            return (
+                <>
+                    <h1 className="text-4xl text-center text-tertiary">This is Login!</h1>
+                </>
+           );
+       }
+   }`
+5. Then import and define this newly created `DefaultLayout` component and `Login` component inside `App.tsx`.
+    `<BrowserRouter>
+        <Routes>
+            <Route path="/*" Component={DefaultLayout}></Route>
+            <Route path="/login" Component={Login}></Route>
+        </Routes>
+    </BrowserRouter
+    `
+6. Then define a Link inside the Sign-In button like below to enable navigation to login page
+   `<Link to="/login">Sign In</Link>`
+7. Paste this code inside `About.tsx`
+   `<div className="flex">
+       <div className="h-auto pt-5 pb-5 pl-10 pr-10 mx-auto">
+           <h2 className="pb-3 text-3xl text-green-400 underline decoration-2">About Us</h2>
+           <p className="pb-3 text-[9px]">At Organic Shop, we believe in the power of nature to nourish, heal, and inspire. Our journey began with a simple yet profound realization: the importance of embracing organic living for the well-being of both individuals and the planet.
+           <br/>
+           <br/>
+           Mission:
+           Our mission is to make organic living accessible to all, fostering a harmonious relationship between people and the environment. We are committed to offering a diverse range of high-quality, ethically sourced, and sustainable products that promote health, wellness, and a greener lifestyle.</p>
+       </div>
+   </div>`
+8. Then place this code inside `Content.tsx`
+   `<div className="flex">
+       <div className="h-auto pt-5 pb-5 pl-10 pr-10 mx-auto">
+           <div className="p-2">
+               <h2 className="text-3xl text-green-400 text-center underline decoration-2">Contact Us</h2>
+               <p className="pb-3 text-[8px]">Got a technical issue? Want to contact us? Please let us assist you..</p>
+           </div>
+               <form className="h-auto p-2 justify-center">
+                        <div className="pb-2">
+                            <label className="text-[7px]">Your Email: </label>
+                            <input className="float-right border-[1px] border-green-200 " type="email"></input>
+                        </div>
+                        <div className="pb-2">
+                            <label className="text-[7px]">Your Subject: </label>
+                            <input className="float-right border-[1px] border-green-200" type="text"></input>
+                        </div>
+                        <div className="pb-2">
+                            <label className="text-[7px]">Your Message: </label>
+                            <textarea className="float-right border-[1px] border-green-200"></textarea>
+                        </div>
+                        <div className="mt-2">
+                            <button type="button" className="mt-5 p-[5px] bg-green-400 text-[7px]">Send Message</button>
+                        </div>
+               </form>
+           </div>
+      </div>`
+9. Replace the `Login.tsx` with this below code.
+   `<div className="flex h-screen bg-[#444544]">
+       <div className="h-auto mt-4 mb-4 pl-9 pr-9 mx-auto border-gray-500 border-[0.5px]">
+       <h2 className="pt-2 pb-3 text-3xl text-green-400 underline decoration-2">Sign In</h2>
+           <form className="h-auto p-2 justify-center">
+                        <div className="pb-2">
+                            <label className="text-[7px]">Email: </label>
+                            <input className="float-right border-[1px] border-green-200 w-3/4" type="email"></input>
+                        </div>
+                        <div className="pb-2">
+                            <label className="text-[7px]">Password: </label>
+                            <input className="float-right border-[1px] border-green-200 w-3/4" type="text"></input>
+                        </div>
+                        <div className="mt-2">
+                            <button type="button" className="mt-5 w-full p-[6px] bg-green-400 text-[7px]">Sign In</button>
+                        </div>
+           </form>
+       </div>
+   </div>`
+10. Add the below code to `Home.tsx`.
+    `<div className="flex">
+        <div className="flex flex-wrap ml-[1px] mt-5 mb-5 justify-center items-center mx-auto">
+            {/* First Row */}
+            <div className="w-28 h-32 bg-blue-300 mr-2 mb-2 flex justify-center items-center">
+             01
+            </div>
+            <div className="w-28 h-32 bg-blue-300 mr-2 mb-2 flex justify-center items-center">
+             02
+            </div>
+            <div className="w-28 h-32 bg-blue-300 mr-2 mb-2 flex justify-center items-center">
+             03
+            </div>
 
-        <ul className="list-none ml-[165px]">
-            <li className="inline-block mr-2 text-[11px] text-[#e6f0e6] cursor-pointer hover:text-green-400">Home</li>
-            <li className="inline-block mr-2 text-[11px] text-[#e6f0e6] cursor-pointer hover:text-green-400">Contact</li>
-            <li className="inline-block mr-2 text-[11px] text-[#e6f0e6] cursor-pointer hover:text-green-400">About</li>
-        </ul>
-        <button className="text-[8px] text-[#e6f0e6] bg-green-400 pl-3 pr-3 ml-5 rounded hover:text-tertiary">Sign In</button>
-   </div>`
-8. Then replace footer with this code to add additional styles.
-   `<div className="p-2 bg-[#444544] flex justify-center">
-       <p className="pt-1 pr-3 text-[10px] text-[#e6f0e6] hover:text-green-400">Copyright © 2023</p>
-       <h1 className="text-1xl text-secondary">Organic Shop</h1>
-       <img className="h-5 w-5 top-0 ml-1" src={logo} alt=""/>
-   </div>`
-9. Install react-router-dom by using this command: `npm i -D react-router-dom`
-10. Then please create a Home component
-    `return (
-        <>
-            <h1 className="text-center">This is Home Component!</h1>
-        </>
-    );`
-11. Then place this code inside `MainContent.tsx` to add routing for Home
-    `<Routes>
-        <Route path="/" Component={Home}></Route>
-    </Routes>`
-12. Then Place this code inside Navbar to navigate to home
-    `<Link to="/">Home</Link>`
-13. Then place this code inside `MainContent.tsx` to add routing for Contact & About
-    `<Route path="/contact" Component={Contact}></Route>
-     <Route path="/about" Component={About}></Route>`
-14. Then please create these links in Navbar to navigate both about and contact
-    `<Link to="/contact">Contact</Link>
-     <Link to="/about">About</Link>`
-15. Then remove temporary added `pt-28 pb-28` classes to `MainContent.tsx` and comment out `<h1 className="text-center">This is Main Content</h1>` tag in `MainContent.tsx` for more visual representation
-16. Then please set custom heights bg-color for those components for further visual representation
-    Home.tsx -> `h-60 pt-6 bg-yellow-400`
-    About.tsx -> `h-32 pt-6 bg-blue-200`
-    Contact.tsx -> `h-44 pt-6 bg-green-300`
-17. Then explain the usage of min-height property to keep same height for components
-    Contact.tsx -> `min-h-screen`
-18. You may use onClick method to capture any button click events.
-    `<button className="text-[8px] text-[#e6f0e6] bg-green-400 pl-3 pr-3 ml-5 rounded hover:text-tertiary"
-             onClick={this.onButtonClick}>Sign In</button>`
-    `private onButtonClick = () => {
-        alert("Button Clicked!")
+            {/* Second Row */}
+            <div className="w-28 h-32 bg-blue-300 mr-2 mb-2 flex justify-center items-center">
+              04
+            </div>
+            <div className="w-28 h-32 bg-blue-300 mr-2 mb-2 flex justify-center items-center">
+              05
+            </div>
+            <div className="w-28 h-32 bg-blue-300 mr-2 mb-2 flex justify-center items-center">
+              06
+            </div>
+        </div>
+    </div>`
+11. Then create grid product items like below.
+    `<div className="w-28 h-32 mr-2 mb-2 justify-center items-center border-gray-500 border-[0.5px]">
+        <div>
+            <img className="h-[88px] w-[88px]" src={spinach} alt=""/>
+        </div>
+        <div className="flex">
+            <div>
+                <h3 className="text-secondary text-[12px] pl-2">Spinach</h3>
+            </div>
+            <div className="bg-yellow-300 ml-1 p-[0.3px] rounded-lg pr-2">
+                <h3 className="text-[12px] pl-2">200 <small className="text-[7px]">LKR</small></h3>
+            </div>
+        </div>
+        <div className="flex justify-center">
+            <button className="w-full mt-1 p-[2.4px] bg-secondary text-[8px] border-gray-500 border-[0.5px]">Add to Cart</button>
+        </div>
+    </div>`
+    `<div className="w-28 h-32 mr-2 mb-2 justify-center items-center border-gray-500 border-[0.5px]">
+          <div>
+               <img className="h-[88px] w-[88px]" src={tomato} alt=""/>
+          </div>
+          <div className="flex">
+              <div>
+                   <h3 className="text-secondary text-[12px] pl-2">Tomato</h3>
+              </div>
+              <div className="bg-yellow-300 ml-1 p-[0.3px] rounded-lg pr-2">
+                   <h3 className="text-[12px] pl-2">300 <small className="text-[7px]">LKR</small></h3>
+              </div>
+          </div>
+          <div className="flex justify-center">
+              {/*<p className="text-[10px]">Available Items: 12</p>*/}
+              <button className="w-full mt-1 p-[2.4px] bg-secondary text-[8px] border-gray-500 border-[0.5px]">Add to Cart</button>
+          </div>
+    </div>`
+    `<div className="w-28 h-32 mr-2 mb-2 justify-center items-center border-gray-500 border-[0.5px]">
+          <div>
+               <img className="h-[88px] w-[88px]" src={beans} alt=""/>
+          </div>
+          <div className="flex">
+               <div>
+                    <h3 className="text-secondary text-[12px] pl-2">Beans</h3>
+               </div>
+               <div className="bg-yellow-300 ml-1 p-[0.3px] rounded-lg pr-2">
+                    <h3 className="text-[12px] pl-2">250 <small className="text-[7px]">LKR</small></h3>
+               </div>
+          </div>
+          <div className="flex justify-center">
+               /*<p className="text-[10px]">Available Items: 12</p>*/}
+               <button className="w-full mt-1 p-[2.4px] bg-secondary text-[8px] border-gray-500 border-[0.5px]">Add to Cart</button>
+          </div>
+     </div>`
+12. Now let's see how to load these items dynamically through a json file by extracting this as a new component called "Product".
+13. So, create a json file called `product-data.json` inside `public` folder and paste the below code inside it.
+    `[
+        {"id":  1,
+         "name": "Spinach",
+         "price": "200",
+         "currency": "LKR",
+         "image": "spinach.png"
+        },
+        {"id":  2,
+         "name": "Tomato",
+         "price": "300",
+         "currency": "LKR",
+         "image": "tomato.png"
+        },
+        {"id":  3,
+         "name": "Beans",
+         "price": "250",
+         "currency": "LKR",
+         "image": "beans.png"
+        }
+    ]`
+14. Extract the product section and create a new common component called `Product`.
+    `import {Component} from "react";
+
+    interface ProductProps {
+        data: null
+    }
+
+    export class Product extends Component<ProductProps> {
+        render() {
+            // @ts-ignore
+            const {data} = this.props;
+            const image = require('../../../images/products/' + data.image);
+
+            return (
+                <div className="w-28 h-32 mr-2 mb-2 justify-center items-center border-gray-500 border-[0.5px]">
+                    <div>
+                        <img className="h-[88px] w-[88px]" src={image} alt=""/>
+                    </div>
+                    <div className="flex">
+                        <div>
+                            <h3 className="text-secondary text-[12px] pl-2">Spinach</h3>
+                        </div>
+                        <div className="bg-yellow-300 ml-1 p-[0.3px] rounded-lg pr-2">
+                            <h3 className="text-[12px] pl-2">200 <small className="text-[7px]">LKR</small></h3>
+                        </div>
+                    </div>
+                    <div className="flex justify-center">
+                       <button className="w-full mt-1 p-[2.4px] bg-secondary text-[8px] border-gray-500 border-[0.5px]">Add to Cart</button>
+                    </div>
+                </div>
+           );
+       }
+   }`
+15. Then replace the `Home` component with this code
+    `export class Home extends Component {
+
+    constructor(props: {} | Readonly<{}>) {
+        super(props);
+        this.state = {
+            data: [],
+        };
+    }
+
+    componentDidMount() {
+        this.fetchData();
+    }
+
+    fetchData = async () => {
+        try {
+            const response = await fetch('./product-data.json');
+            const jsonData = await response.json();
+            this.setState({data: jsonData});
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
+
+    render() {
+    // @ts-ignore
+    const {data} = this.state;
+
+        return (
+            <div>
+                <div className="flex flex-wrap ml-[1px] mt-5 mb-5 justify-center items-center mx-auto">
+                    {data.map((product:any) => (
+                       <Product key={product.id} data={product}/>
+                    ))}
+                </div>
+            </div>
+        );
+    }
     }`
+16. Then you can see adding more data to .json file to reflect in the dashboard at realtime.
