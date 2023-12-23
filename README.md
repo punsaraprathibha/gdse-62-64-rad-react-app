@@ -1,267 +1,183 @@
-1. Previously we had below components in `App.tsx` wrapped by `BrowserRouter`
-    `<BrowserRouter>
-       <Navbar/>
-       <MainContent/>
-       <Footer/>
-   </BrowserRouter>`
-2. So, if we need to navigate to login page which don't have any of these common components, we need to do some small layout change of this current layout.
-3. So, for that we need to extract these common set of components to a separate single component for easy to manage. Let's call it as `DefaultLayout.tsx`
-    `export class DefaultLayout extends Component { 
-        render() {
-            return (
-                <>
-                    <Navbar/>
-                    <MainContent/>
-                    <Footer/>
-                </>
-            );
-        }
-   }`
-4. Let's create new component called `Login`
-    `export class Login extends Component {
-        render() {
-            return (
-                <>
-                    <h1 className="text-4xl text-center text-tertiary">This is Login!</h1>
-                </>
-           );
-       }
-   }`
-5. Then import and define this newly created `DefaultLayout` component and `Login` component inside `App.tsx`.
-    `<BrowserRouter>
-        <Routes>
-            <Route path="/*" Component={DefaultLayout}></Route>
-            <Route path="/login" Component={Login}></Route>
-        </Routes>
-    </BrowserRouter
-    `
-6. Then define a Link inside the Sign-In button like below to enable navigation to login page
-   `<Link to="/login">Sign In</Link>`
-7. Paste this code inside `About.tsx`
-   `<div className="flex">
-       <div className="h-auto pt-5 pb-5 pl-10 pr-10 mx-auto">
-           <h2 className="pb-3 text-3xl text-green-400 underline decoration-2">About Us</h2>
-           <p className="pb-3 text-[9px]">At Organic Shop, we believe in the power of nature to nourish, heal, and inspire. Our journey began with a simple yet profound realization: the importance of embracing organic living for the well-being of both individuals and the planet.
-           <br/>
-           <br/>
-           Mission:
-           Our mission is to make organic living accessible to all, fostering a harmonious relationship between people and the environment. We are committed to offering a diverse range of high-quality, ethically sourced, and sustainable products that promote health, wellness, and a greener lifestyle.</p>
-       </div>
-   </div>`
-8. Then place this code inside `Content.tsx`
-   `<div className="flex">
-       <div className="h-auto pt-5 pb-5 pl-10 pr-10 mx-auto">
-           <div className="p-2">
-               <h2 className="text-3xl text-green-400 text-center underline decoration-2">Contact Us</h2>
-               <p className="pb-3 text-[8px]">Got a technical issue? Want to contact us? Please let us assist you..</p>
-           </div>
-               <form className="h-auto p-2 justify-center">
-                        <div className="pb-2">
-                            <label className="text-[7px]">Your Email: </label>
-                            <input className="float-right border-[1px] border-green-200 " type="email"></input>
-                        </div>
-                        <div className="pb-2">
-                            <label className="text-[7px]">Your Subject: </label>
-                            <input className="float-right border-[1px] border-green-200" type="text"></input>
-                        </div>
-                        <div className="pb-2">
-                            <label className="text-[7px]">Your Message: </label>
-                            <textarea className="float-right border-[1px] border-green-200"></textarea>
-                        </div>
-                        <div className="mt-2">
-                            <button type="button" className="mt-5 p-[5px] bg-green-400 text-[7px]">Send Message</button>
-                        </div>
-               </form>
-           </div>
-      </div>`
-9. Replace the `Login.tsx` with this below code.
-   `<div className="flex h-screen bg-[#444544]">
-       <div className="h-auto mt-4 mb-4 pl-9 pr-9 mx-auto border-gray-500 border-[0.5px]">
-       <h2 className="pt-2 pb-3 text-3xl text-green-400 underline decoration-2">Sign In</h2>
-           <form className="h-auto p-2 justify-center">
-                        <div className="pb-2">
-                            <label className="text-[7px]">Email: </label>
-                            <input className="float-right border-[1px] border-green-200 w-3/4" type="email"></input>
-                        </div>
-                        <div className="pb-2">
-                            <label className="text-[7px]">Password: </label>
-                            <input className="float-right border-[1px] border-green-200 w-3/4" type="text"></input>
-                        </div>
-                        <div className="mt-2">
-                            <button type="button" className="mt-5 w-full p-[6px] bg-green-400 text-[7px]">Sign In</button>
-                        </div>
-           </form>
-       </div>
-   </div>`
-10. Add the below code to `Home.tsx`.
-    `<div className="flex">
-        <div className="flex flex-wrap ml-[1px] mt-5 mb-5 justify-center items-center mx-auto">
-            {/* First Row */}
-            <div className="w-28 h-32 bg-blue-300 mr-2 mb-2 flex justify-center items-center">
-             01
-            </div>
-            <div className="w-28 h-32 bg-blue-300 mr-2 mb-2 flex justify-center items-center">
-             02
-            </div>
-            <div className="w-28 h-32 bg-blue-300 mr-2 mb-2 flex justify-center items-center">
-             03
-            </div>
+1. Then let's define a function called `addToCartOnClick` to manage addToCart
+    `private addToCartOnClick = ()=> {
 
-            {/* Second Row */}
-            <div className="w-28 h-32 bg-blue-300 mr-2 mb-2 flex justify-center items-center">
-              04
-            </div>
-            <div className="w-28 h-32 bg-blue-300 mr-2 mb-2 flex justify-center items-center">
-              05
-            </div>
-            <div className="w-28 h-32 bg-blue-300 mr-2 mb-2 flex justify-center items-center">
-              06
-            </div>
-        </div>
-    </div>`
-11. Then create grid product items like below.
-    `<div className="w-28 h-32 mr-2 mb-2 justify-center items-center border-gray-500 border-[0.5px]">
-        <div>
-            <img className="h-[88px] w-[88px]" src={spinach} alt=""/>
-        </div>
-        <div className="flex">
-            <div>
-                <h3 className="text-secondary text-[12px] pl-2">Spinach</h3>
-            </div>
-            <div className="bg-yellow-300 ml-1 p-[0.3px] rounded-lg pr-2">
-                <h3 className="text-[12px] pl-2">200 <small className="text-[7px]">LKR</small></h3>
-            </div>
-        </div>
-        <div className="flex justify-center">
-            <button className="w-full mt-1 p-[2.4px] bg-secondary text-[8px] border-gray-500 border-[0.5px]">Add to Cart</button>
-        </div>
-    </div>`
-    `<div className="w-28 h-32 mr-2 mb-2 justify-center items-center border-gray-500 border-[0.5px]">
-          <div>
-               <img className="h-[88px] w-[88px]" src={tomato} alt=""/>
-          </div>
-          <div className="flex">
-              <div>
-                   <h3 className="text-secondary text-[12px] pl-2">Tomato</h3>
-              </div>
-              <div className="bg-yellow-300 ml-1 p-[0.3px] rounded-lg pr-2">
-                   <h3 className="text-[12px] pl-2">300 <small className="text-[7px]">LKR</small></h3>
-              </div>
-          </div>
-          <div className="flex justify-center">
-              {/*<p className="text-[10px]">Available Items: 12</p>*/}
-              <button className="w-full mt-1 p-[2.4px] bg-secondary text-[8px] border-gray-500 border-[0.5px]">Add to Cart</button>
-          </div>
-    </div>`
-    `<div className="w-28 h-32 mr-2 mb-2 justify-center items-center border-gray-500 border-[0.5px]">
-          <div>
-               <img className="h-[88px] w-[88px]" src={beans} alt=""/>
-          </div>
-          <div className="flex">
-               <div>
-                    <h3 className="text-secondary text-[12px] pl-2">Beans</h3>
-               </div>
-               <div className="bg-yellow-300 ml-1 p-[0.3px] rounded-lg pr-2">
-                    <h3 className="text-[12px] pl-2">250 <small className="text-[7px]">LKR</small></h3>
-               </div>
-          </div>
-          <div className="flex justify-center">
-               /*<p className="text-[10px]">Available Items: 12</p>*/}
-               <button className="w-full mt-1 p-[2.4px] bg-secondary text-[8px] border-gray-500 border-[0.5px]">Add to Cart</button>
-          </div>
-     </div>`
-12. Now let's see how to load these items dynamically through a json file by extracting this as a new component called "Product".
-13. So, create a json file called `product-data.json` inside `public` folder and paste the below code inside it.
-    `[
-        {"id":  1,
-         "name": "Spinach",
-         "price": "200",
-         "currency": "LKR",
-         "image": "spinach.png"
-        },
-        {"id":  2,
-         "name": "Tomato",
-         "price": "300",
-         "currency": "LKR",
-         "image": "tomato.png"
-        },
-        {"id":  3,
-         "name": "Beans",
-         "price": "250",
-         "currency": "LKR",
-         "image": "beans.png"
-        }
-    ]`
-14. Extract the product section and create a new common component called `Product`.
-    `import {Component} from "react";
-
-    interface ProductProps {
-        data: null
+    }`
+2. Then call the method
+   `<button className="w-full mt-1 p-[2.4px] bg-secondary text-[8px] border-gray-500 border-[0.5px]"
+             onClick={this.addToCartOnClick}>Add to Cart
+    </button>}`
+3. Then define `ProductState` interface for state management
+    `interface ProductProps {
+        data: any;
     }
 
-    export class Product extends Component<ProductProps> {
-        render() {
-            // @ts-ignore
-            const {data} = this.props;
-            const image = require('../../../images/products/' + data.image);
+    interface ProductState {
+        isActive: boolean
+    }
 
-            return (
-                <div className="w-28 h-32 mr-2 mb-2 justify-center items-center border-gray-500 border-[0.5px]">
-                    <div>
-                        <img className="h-[88px] w-[88px]" src={image} alt=""/>
-                    </div>
-                    <div className="flex">
-                        <div>
-                            <h3 className="text-secondary text-[12px] pl-2">Spinach</h3>
-                        </div>
-                        <div className="bg-yellow-300 ml-1 p-[0.3px] rounded-lg pr-2">
-                            <h3 className="text-[12px] pl-2">200 <small className="text-[7px]">LKR</small></h3>
-                        </div>
-                    </div>
-                    <div className="flex justify-center">
-                       <button className="w-full mt-1 p-[2.4px] bg-secondary text-[8px] border-gray-500 border-[0.5px]">Add to Cart</button>
-                    </div>
-                </div>
-           );
+    export class Product extends Component<ProductProps, ProductState> {
+
+        constructor(props: ProductProps) {
+            super(props);
+            this.state = {
+                isActive: false,
+            };
        }
    }`
-15. Then replace the `Home` component with this code
-    `export class Home extends Component {
+4. Then modify the function like below.
+    `private addToCartOnClick = ()=> {
+        this.setState({ isActive: !this.state.isActive }, () => {
+            console.log(this.state.isActive);
+            alert(this.state.isActive);
+        });
+    }`
+5. Then you can do anything based on the above status update on button click like below.
+    `{this.state.isActive 
+        ? <div className="w-full mt-1 p-[2.4px] bg-red-500 text-[8px] text-center">Remove from Cart</div>
+        : <button className="w-full mt-1 p-[2.4px] bg-secondary text-[8px] border-gray-500 border-[0.5px]"
+                  onClick={this.addToCartOnClick}>Add to Cart
+          </button>}`
+6. Then change this Remove cart section to the below code.
+    `<div className="w-full mt-1 p-[2.4px] bg-secondary text-[8px] text-center">
+        <button className="float-left text-[8px] bg-yellow-300 rounded-lg h-3 w-4">-</button>
+        <small className="text-[8px]">1</small>
+        <button className="float-right text-[8px]  bg-yellow-300 rounded-lg h-3 w-4">+</button>
+    </div>`
+7. Then create a separate common component called `AddToCart` and then place this code inside it.
+8. Now let's do the state management process to handle item count with additions and deductions.
+    `interface AddToCartProps {
+        data: {product: any, isAdded: boolean};
+    }
 
-    constructor(props: {} | Readonly<{}>) {
+    interface AddToCartState {
+        itemCount: number;
+    }
+
+    export class AddToCart extends Component<AddToCartProps, AddToCartState> {
+
+    constructor(props: AddToCartProps) {
         super(props);
         this.state = {
-            data: [],
+           itemCount: 1,
         };
     }
 
-    componentDidMount() {
-        this.fetchData();
-    }
-
-    fetchData = async () => {
-        try {
-            const response = await fetch('./product-data.json');
-            const jsonData = await response.json();
-            this.setState({data: jsonData});
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        }
-    };
-
     render() {
-    // @ts-ignore
-    const {data} = this.state;
+
+        // @ts-ignore
+        let { itemCount } = this.state;
+
+        let increaseItemCount = () => {
+            alert("Add")
+            this.setState({itemCount: ++itemCount});
+        }
+
+        let decreaseItemCount = () => {
+            alert("Remove")
+            this.setState({itemCount: --itemCount});
+        }
 
         return (
-            <div>
-                <div className="flex flex-wrap ml-[1px] mt-5 mb-5 justify-center items-center mx-auto">
-                    {data.map((product:any) => (
-                       <Product key={product.id} data={product}/>
-                    ))}
-                </div>
+            <div className="w-full mt-1 p-[2.4px] bg-secondary text-[8px] text-center">
+                <button className="float-left text-[8px] bg-yellow-300 rounded-lg h-3 w-4 border-gray-500"
+                        onClick={decreaseItemCount}>-</button>
+                <small className="text-[8px]">{itemCount}</small>
+                <button className="float-right text-[8px]  bg-yellow-300 rounded-lg h-3 w-4"
+                        onClick={increaseItemCount}>+</button>
             </div>
         );
     }
     }`
-16. Then you can see adding more data to .json file to reflect in the dashboard at realtime.
+9. Then add this inside `Product.tsx`
+    `<AddToCart data={{product: data, isAdded: this.state.isActive}}/>`
+10. Then add this additional logic to handle itemCount not to be decreased below 1.
+    `let decreaseItemCount = () => {
+        if(itemCount > 1) {
+            this.setState({itemCount: --itemCount});
+        } else {
+            alert("Item count can't be less than 1")
+        }
+    }`
+11. Then I need to keep these added product data inside an array for future usage.
+12. For that let's create a static array inside the component to keep these data.
+    `export class AddToCart extends Component<AddToCartProps> {
+        public static itemsList: CartItem[] = []; // <- Add this line
+    }`
+13. Then let's add product data initially to this array when Add to Cart button on click.
+    `componentDidMount() {
+        // @ts-ignore
+        let { itemCount } = this.state;
+        if (this.props.data.isAdded) {
+            // @ts-ignore
+            if (!AddToCart.itemsList.find(item=> item.product.id === this.props.data.product.id)) {
+                AddToCart.itemsList.push({product: this.props.data.product, itemCount: itemCount});
+                console.log(AddToCart.itemsList);
+            }
+        }
+    }`
+14. Then let's manipulate array data based on itemCount changes.
+    `componentDidUpdate(prevProps: Readonly<AddToCartProps>, prevState: Readonly<{}>, snapshot?: any) {
+        // @ts-ignore
+        let { itemCount } = this.state;
+        // @ts-ignore
+        let find = AddToCart.itemsList.find(item=> item.product.id === this.props.data.product.id);
+        // @ts-ignore
+        let index = AddToCart.itemsList.indexOf(find);
+        AddToCart.itemsList.splice(index, 1);
+        AddToCart.itemsList.push({product: this.props.data.product, itemCount: itemCount});
+        console.log(AddToCart.itemsList);
+    }`
+15. Create a new Component called `ShoppingCart` and place this code inside it.
+    `interface ShoppingCartProps {
+       itemsList: CartItem[];
+    }
+
+    export class ShoppingCart extends Component<ShoppingCartProps> {
+    render() {
+        return (
+            <h1>This is shopping cart!<h1/>
+        )
+    }`
+16. Then add this link inside `Navbar.tsx`.
+    `<li className="ml-auto mr-2 text-[11px] text-[#e6f0e6] hover:text-green-400">
+        <Link to="/shopping-cart">My-Cart</Link>
+    </li>`
+17. Also add this code inside `MainContent.tsx` to enable routing.
+    `<Route path="/shopping-cart" element={<ShoppingCart itemsList={AddToCart.itemsList}/>}></Route>`
+18. Now let's loop the itemList passed to the ShoppingCart component and display it in a table.
+    `render() {
+
+        return (
+            <div className="flex justify-center items-center min-h-screen">
+                <table className="w-full mx-6">
+                    <tr className="bg-gray-400">
+                        <th className="text-[9px] font-normal border-black border-[0.5px] px-1">Id</th>
+                        <th className="text-[9px] font-normal border-black border-[0.5px] px-1">Name</th>
+                        <th className="text-[9px] font-normal border-black border-[0.5px] px-1">Unit Price</th>
+                        <th className="text-[9px] font-normal border-black border-[0.5px] px-1">Quantity</th>
+                        <th className="text-[9px] font-normal border-black border-[0.5px] px-1">Total Price</th>
+                    </tr>
+                    {
+                        this.props.itemsList.length === 0 ?
+                            <tr>
+                                <td colSpan={5} className="border-black border-[0.5px] px-1">
+                                    <p className="text-[8px] text-center">No Items to Display!</p>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr> :
+                            this.props.itemsList.map((item) => (
+                                <tr className="border-black border-[0.5px] px-1">
+                                    <td className="text-[9px] border-black border-[0.5px] px-1">{item.product.id}</td>
+                                    <td className="text-[9px] border-black border-[0.5px] px-1">{item.product.name}</td>
+                                    <td className="text-[9px] border-black border-[0.5px] px-1">{item.product.price + ' ' + item.product.currency}</td>
+                                    <td className="text-[9px] border-black border-[0.5px] px-1">{item.itemCount}</td>
+                                    <td className="text-[9px] border-black border-[0.5px] px-1">{(item.itemCount * item.product.price) + ' ' + item.product.currency}</td>
+                                </tr>
+                            ))
+                    }
+                </table>
+            </div>
+        );
+    }`
