@@ -26,6 +26,10 @@ export class Navbar extends Component {
                     <li className="mr-2 text-[11px] text-[#e6f0e6] hover:text-green-400">
                         <Link to="/about">About</Link>
                     </li>
+
+                    <li className="mr-2 text-[11px] text-[#e6f0e6] hover:text-green-400">
+                        <Link to="/shopping-cart">My-Cart</Link>
+                    </li>
                 </ul>
 
                 <button className="text-[8px] text-[#e6f0e6]
