@@ -34,7 +34,14 @@ export class ShoppingCart
                             </tr>
                             : this.props.itemsList.map((item) => (
                                 <tr className="border-black border-[0.5px] px-1">
-
+                                    <td className="text-[9px]
+                                                   border-black
+                                                   border-[0.5px] px-1">
+                                        {item.product.id}</td>
+                                    <td className="text-[9px] border-black border-[0.5px] px-1">{item.product.name}</td>
+                                    <td className="text-[9px] border-black border-[0.5px] px-1">{item.product.price + ' ' + item.product.currency}</td>
+                                    <td className="text-[9px] border-black border-[0.5px] px-1">{item.itemCount}</td>
+                                    <td className="text-[9px] border-black border-[0.5px] px-1">{(item.product.price * item.itemCount) + ' ' + item.product.currency}</td>
                                 </tr>
                             ))
                     }
