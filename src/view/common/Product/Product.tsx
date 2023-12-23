@@ -50,7 +50,7 @@ export class Product
                 <div className="flex justify-center">
                     {
                         this.state.isActive ?
-                            <ModifyCart data={{}}/>
+                            <ModifyCart data={{ product: data, isAdded: this.state.isActive }}/>
                             : <button className="w-full mt-1 p-[2.4px] bg-secondary
                                        text-[8px] border-gray-500 border-[0.5px]"
                                       onClick={this.addToCartOnClick}>
