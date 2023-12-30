@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var productsRouter = require('./routes/products');
 
 var app = express();
 
@@ -13,14 +13,21 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+// Middlewares
 app.use(logger('dev'));
+// Converts Request body data to JSON format
 app.use(express.json());
+// When we pass form data as URL encoded it is also converted to JSON format
 app.use(express.urlencoded({ extended: false }));
+// req.cookies
 app.use(cookieParser());
+// static path define
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+// Path of the Route
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/products', productsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
