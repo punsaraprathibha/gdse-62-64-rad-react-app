@@ -3,11 +3,13 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const cors = require('cors')
 
 var indexRouter = require('./routes/index');
 var productsRouter = require('./routes/products');
+var contactRouter = require('./routes/contact');
 
-var app = express();
+var app = express(); // Creates an Express App
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -25,9 +27,15 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
+// Enable CORS for all routes
+app.use(cors());
+// // Handle preflight requests
+// app.options('*', cors())
+
 // Path of the Route
-app.use('/', indexRouter);
-app.use('/products', productsRouter);
+app.use('/', indexRouter); // http://localhost:4000/ <= Base URL
+app.use('/products', productsRouter); // http://localhost:4000/products
+app.use('/contact', contactRouter); // http://localhost:4000/contact
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

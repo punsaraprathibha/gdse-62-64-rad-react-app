@@ -26,4 +26,5 @@ const productsList = [
 
 const test = [];
 
-module.exports = [productsList, test];
+// module.exports = [productsList, test];
+module.exports = {productsList, test};
