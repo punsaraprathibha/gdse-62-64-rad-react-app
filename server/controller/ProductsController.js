@@ -21,11 +21,7 @@ const ProductsController = {
             res.status(200).json(product);
         } catch (err) {
             console.error(err);
-            res.status(500)
-                .json({
-                    error:
-                        'Something Went Wrong!'
-                });
+            res.status(500).json({ error: 'Something Went Wrong!' });
         }
     },
 
@@ -64,7 +60,7 @@ const ProductsController = {
             if (result.deletedCount === 0) {
                 return res.status(404).json({error: 'Product not found!'});
             }
-            res.status(200).json({message: 'Product deleted successfully!'})
+            res.status(200).json({message: 'Product deleted successfully!'});
 
         } catch (err) {
             console.error(err);
