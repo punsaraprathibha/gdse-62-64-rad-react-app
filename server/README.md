@@ -153,7 +153,7 @@
     `findProduct: async function (req, res) {
         try {
            const productId = req.params.id;
-           let product = await Product.find({id: productId});
+           let product = await Product.findOne({id: productId});
            res.json(product);
         } catch (error) {
            console.error(error);
