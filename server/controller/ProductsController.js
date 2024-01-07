@@ -1,6 +1,4 @@
-const {productsList} = require("../constants/const");
 const Product = require('../model/Product');
-const e = require("express");
 
 const ProductsController = {
 
